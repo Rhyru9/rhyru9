@@ -14,10 +14,6 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=500&size=16&duration=3400&pause=1200&color=38BDF8&center=true&vCenter=true&width=640&lines=Access+control%2C+injection%2C+misconfig;Authn+holds.+Authz+is+usually+the+gap;Small+tools+for+recon+I+keep+repeating" />
-</p>
-
-<p align="center">
   <a href="https://rhyru9.xyz">
     <img src="https://img.shields.io/badge/Portfolio-rhyru9.xyz-38BDF8?style=flat-square&logo=firefox&logoColor=white&labelColor=0D1117" />
   </a>
@@ -40,10 +36,12 @@ If I’ve done a step twice by hand, it tends to become a script.
 
 ## where the time goes
 
-Web is home base. Access control first: IDOR, BOLA, hidden admin routes, CORS
-that reflects origin and still sends cookies. Then identity — session reuse
-after logout, reset-link poisoning, MFA that only lives in the UI, JWT
-`alg` / `kid` / `none`, OAuth `redirect_uri` treated as decoration.
+### web
+
+Access control first: IDOR, BOLA, hidden admin routes, CORS that reflects
+origin and still sends cookies. Then identity — session reuse after logout,
+reset-link poisoning, MFA that only lives in the UI, JWT `alg` / `kid` / `none`,
+OAuth `redirect_uri` treated as decoration.
 
 Injection sits next to that. SQLi, NoSQLi, XSS (reflected, stored, DOM), SSTI,
 command injection, XXE, header/CRLF. CSRF on state-changing requests that never
@@ -53,17 +51,19 @@ cache deception when the proxies disagree. Prototype pollution and DOM
 clobbering on heavy frontends. Business logic is slower — you have to understand
 how the product makes money before you can make it spend money wrong.
 
-APIs hide the same mistakes. REST and GraphQL (introspection left on, batching,
-depth, a nested field that skipped the check the REST route had). JWTs trusted
-too hard. OAuth as “redirect and hope.” A field that wasn’t in the docs until I
-sent it anyway. Mass assignment, parameter pollution, SSRF, races.
-Deserialization — pickle, Java, PHP `unserialize` — and webhooks that were
-never verified.
+### api
 
-Cloud and supply chain when the app is only half the target. Private buckets
-that aren’t. Default creds, debug, directory listing, stack traces. Forgotten
-subdomains. CI printing a token into a log. Outdated deps with a CVE that
-already has a name. Exception handlers that leak or fail open.
+REST and GraphQL (introspection left on, batching, depth, a nested field that
+skipped the check the REST route had). JWTs trusted too hard. OAuth as
+“redirect and hope.” A field that wasn’t in the docs until I sent it anyway.
+Mass assignment, parameter pollution, SSRF, races. Deserialization — pickle,
+Java, PHP `unserialize` — and webhooks that were never verified.
+
+### cloud
+
+Private buckets that aren’t. Default creds, debug, directory listing, stack
+traces. Forgotten subdomains. CI printing a token into a log. Outdated deps
+with a CVE that already has a name. Exception handlers that leak or fail open.
 
 OWASP Top 10 (2025) is the starting map. Named version is in the index.
 
@@ -117,30 +117,24 @@ when the target is PHP and matching the language makes the bug easier to see.
 
 The recon steps that kept repeating turned into these.
 
-[GitSD](https://github.com/rhyru9/GitSD) (Go) walks domains and subdomains for
-exposed `.git`, then reads what's inside — credentials, keys, source.
-
-[KODOK](https://github.com/rhyru9/kodok) (Go) is the JavaScript pass: hidden API
-endpoints, JS dependency chains, secrets with entropy so the noise drops.
-
-[PathKit](https://github.com/Rhyru9/PathKit) (Python, no deps) sits later in
-triage. It splits human slugs from UUID / hash / timestamp / base64 junk so
-recon and IDOR don't treat every path the same.
-
-## github
-
-<p align="center">
-  <img height="165" src="https://github-stats-extended.vercel.app/api?username=RHYru9&show_icons=true&include_all_commits=true&hide_rank=true&hide_border=true&bg_color=16181D&title_color=38BDF8&text_color=c9d1d9&icon_color=38BDF8" />
-  <img height="165" src="https://github-stats-extended.vercel.app/api/top-langs/?username=RHYru9&layout=compact&hide_border=true&bg_color=16181D&title_color=38BDF8&text_color=c9d1d9" />
-</p>
-<p align="center">
-  <img height="165" src="https://streak-stats.demolab.com/?user=RHYru9&theme=dark&hide_border=true&background=16181D&ring=38BDF8&fire=38BDF8&currStreakNum=ffffff&sideNums=c9d1d9&currStreakLabel=38BDF8&sideLabels=c9d1d9&dates=8b8fa3" />
-</p>
+- **[GitSD](https://github.com/rhyru9/GitSD)** · `Go` — exposed `.git` across domains and subdomains, then the contents: credentials, keys, source
+- **[KODOK](https://github.com/rhyru9/kodok)** · `Go` — hidden API endpoints in JavaScript, dependency chains, secrets with entropy
+- **[PathKit](https://github.com/Rhyru9/PathKit)** · `Python` — path classifier: human slugs vs UUID / hash / timestamp / base64
 
 ## right now
 
 Bug bounty on web and API. PathKit is the one still moving. GitSD and KODOK
 when a recon pass needs them. Notes from testing, when they’re worth keeping.
+
+## github
+
+<p align="center">
+  <img width="400" src="https://github-stats-extended.vercel.app/api?username=RHYru9&show_icons=true&include_all_commits=true&hide_rank=true&hide_border=true&bg_color=16181D&title_color=38BDF8&text_color=c9d1d9&icon_color=38BDF8&custom_title=stats" />
+  <img width="400" src="https://github-stats-extended.vercel.app/api/top-langs/?username=RHYru9&hide_border=true&bg_color=16181D&title_color=38BDF8&text_color=c9d1d9" />
+</p>
+<p align="center">
+  <img width="808" src="https://streak-stats.demolab.com/?user=RHYru9&theme=dark&hide_border=true&background=16181D&ring=38BDF8&fire=38BDF8&currStreakNum=ffffff&sideNums=c9d1d9&currStreakLabel=38BDF8&sideLabels=c9d1d9&dates=8b8fa3" />
+</p>
 
 ---
 
